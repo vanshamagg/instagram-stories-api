@@ -2,10 +2,14 @@
 
 const express = require('express');
 const router = express.Router();
+const controllers = require('../controllers/user.controller');
 
-router.get('/', (req, res)=> {
-    res.send("welcome to the user route")
-})
+
+router.get('/', controllers.getAll);
+router.get('/:username', controllers.getOne);
+router.post('/', controllers.create);
+router.put('/', controllers.update)
+router.delete('/:username', controllers.destroy);
 
 
 module.exports =  router;
