@@ -14,6 +14,7 @@ router.use(cookieParser(process.env.COOKIE_SECRET));
 // ROUTERS
 router.use("/user", require("./user.route"));
 router.use("/auth", require("./auth.route"));
+router.use("/story", require("./story.route"));
 
 // HOME MESSAGE
 router.get("/", (req, res) => {

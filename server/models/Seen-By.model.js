@@ -1,15 +1,15 @@
 module.exports = (sequelize, Sequelize) => {
     const SeenBy = sequelize.define("seenby", {
-        userId: {
-            type: Sequelize.INTEGER,
+        username: {
+            type: Sequelize.STRING(15),
             allowNull: false,
             references: {
                 model: "users",
-                key: "id",
+                key: "username",
             },
         },
 
-        storyId: {
+        storyid: {
             type: Sequelize.INTEGER,
             allowNull: false,
             references: {
@@ -19,7 +19,8 @@ module.exports = (sequelize, Sequelize) => {
         }
     }, {
         updatedAt: false,
-        freezeTableName: true
+        freezeTableName: true,
+        createdAt: false
     });
     return SeenBy;
 };

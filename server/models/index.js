@@ -27,9 +27,9 @@ db.User = require('./User.model')(sequelize, Sequelize);
 db.Story = require('./Stories.model')(sequelize, Sequelize);
 db.SeenBy = require('./Seen-By.model')(sequelize, Sequelize);
 
-// RELATIONS
-db.User.hasMany(db.Story);
-db.Story.belongsTo(db.User, {targetKey: 'username', onDelete: 'CASCADE'} );
+// // RELATIONS
+// db.Story.hasMany(db.SeenBy);
+// db.SeenBy.belongsTo(db.Story);
 
 
 module.exports = db;
