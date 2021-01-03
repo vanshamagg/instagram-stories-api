@@ -1,5 +1,6 @@
 const { User } = require("../models");
 
+// get list of all users
 async function getAll(req, res, next) {
     try {
         const list = await User.findAll();
@@ -9,6 +10,7 @@ async function getAll(req, res, next) {
     }
 }
 
+// get details of the user in params
 async function getOne(req, res, next) {
     try {
         const user = await User.findOne({ where: { username: req.params.username } });
@@ -19,6 +21,7 @@ async function getOne(req, res, next) {
     }
 }
 
+// sign up
 async function create(req, res, next) {
     try {
         const { firstname, lastname, username, email, password } = req.body;
@@ -36,6 +39,7 @@ async function create(req, res, next) {
     }
 }
 
+// update any user using email, because email cannot be changed.
 async function update(req, res, next) {
     try {
         const { firstname, lastname, username, password, email } = req.body;
@@ -46,6 +50,7 @@ async function update(req, res, next) {
     }
 }
 
+// delete a user.
 async function destroy(req, res, next) {
     try {
         const username = req.params.username;

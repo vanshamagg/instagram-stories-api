@@ -6,7 +6,7 @@ const multer = require("multer");
 const uuid = require('uuid');
 const controllers =  require('../controllers/story.controller');
 const UPLOAD_PATH = require("../../public");
-
+const jwtAuth = require('../middlware-config/jwt-authentication');
 let storage = multer.diskStorage({
     destination: UPLOAD_PATH,
     filename: (req, file, cb) => {
@@ -17,8 +17,9 @@ let storage = multer.diskStorage({
 
     },
 });
+// MIDDLEWARES
 const upload = multer({ storage });
-
+router.use(jwtAuth);
 
 router.post("/", upload.single("image"), controllers.create);
 router.get('/', controllers.get);

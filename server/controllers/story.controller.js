@@ -2,11 +2,12 @@
  * CONTROLLERS FOR /api/v1/story
  */
 
-const { Story, SeenBy, sequelize, User } = require("../models");
+const { Story, SeenBy, } = require("../models");
 const UPLOAD_PATH = require("../../public");
 
-// create a single story
-
+/**
+ * @description CREATE A SINGLE STORY
+ */
 async function create(req, res) {
     try {
         // console.log(req.file.filename);
@@ -102,13 +103,13 @@ async function deleteStory(req, res) {
         const id = req.params.id; //story id
         const story = await Story.findOne({
             where: {
-                addedBy: req.signedCookies.username,
+                addedby: req.signedCookies.username,
                 id: req.params.id,
             },
         });
         await Story.destroy({
             where: {
-                addedBy: req.signedCookies.username,
+                addedby: req.signedCookies.username,
                 id: req.params.id,
             },
         });

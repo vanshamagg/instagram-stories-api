@@ -1,3 +1,7 @@
+/**
+ *  /api/v1/
+ */
+
 const load = require("dotenv").config();
 if (load.error) throw load.error;
 
@@ -18,8 +22,16 @@ router.use("/story", require("./story.route"));
 
 // HOME MESSAGE
 router.get("/", (req, res) => {
-    const message = "<h1 align = 'center'> Yes it Works! Welcome to Instagram API </h1>";
-    res.send(message);
+    try {
+        // const jwt = require('jsonwebtoken');
+        // const decoded = jwt.verify(req.signedCookies.token, process.env.JWT_SECRET);
+        // console.log(decoded);
+        const message = "<h1 align = 'center'> Yes it Works! Welcome to Instagram API </h1>";
+        res.send(message);
+    } catch (error) {
+        res.send(error.message);
+    }
 });
+
 
 module.exports = router;
