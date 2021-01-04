@@ -6,10 +6,13 @@ const multer = require("multer");
 const uuid = require('uuid');
 const controllers =  require('../controllers/story.controller');
 const UPLOAD_PATH = require("../../public");
+console.log(UPLOAD_PATH)
 const jwtAuth = require('../middlware-config/jwt-authentication');
 let storage = multer.diskStorage({
-    destination: UPLOAD_PATH,
-    filename: (req, file, cb) => {
+    destination: function(req,file,cb){
+      cb(null,UPLOAD_PATH)
+    } ,
+    filename: function(req, file, cb) {
         let arr = file.originalname.split('.');
         let ext = arr[arr.length-1];
         let newName = uuid.v4() + "." + ext;

@@ -3,11 +3,12 @@
 const express = require('express');
 const router = express.Router();
 const controllers = require('../controllers/user.controller');
+const {validateSignupRequest,isRequestValidated}=require('../validator/user')
 
 
 router.get('/', controllers.getAll);
 router.get('/:username', controllers.getOne);
-router.post('/', controllers.create);
+router.post('/',validateSignupRequest,isRequestValidated, controllers.create);
 router.put('/', controllers.update)
 router.delete('/:username', controllers.destroy);
 

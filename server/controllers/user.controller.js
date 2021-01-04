@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const bcrypt=require('bcryptjs');
 
 // get list of all users
 async function getAll(req, res, next) {
@@ -25,13 +26,16 @@ async function getOne(req, res, next) {
 async function create(req, res, next) {
     try {
         const { firstname, lastname, username, email, password } = req.body;
-        await User.create({
+        const newuser={
             firstname,
             lastname,
             username,
             email,
             password,
-        });
+        }
+        const salt=await bcrypt.genSalt(10);
+        newuser.password=await bcrypt.hash(password,salt);
+       const data= await User.create(newuser);
         console.log("User Added to Db");
         res.send("User created Successfully");
     } catch (error) {

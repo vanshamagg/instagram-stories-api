@@ -10,7 +10,7 @@ const UPLOAD_PATH = require("../../public");
  */
 async function create(req, res) {
     try {
-        // console.log(req.file.filename);
+         console.log(req.file.filename);
         await Story.create({
             src: req.file.filename,
             addedby: req.signedCookies.username,
