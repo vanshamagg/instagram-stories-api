@@ -8,14 +8,14 @@ exports.validateSignupRequest = [
 
   check("password")
     .isLength({ min: 5 })
-    .withMessage("Password must be at least 6 character long"),
+    .withMessage("Password must be at least 5 character long"),
 ];
 
 exports.validateSigninRequest = [
-  check("email").isEmail().withMessage("Valid Email is required"),
+  check("username").notEmpty().withMessage("Valid username is required"),
   check("password")
-    .isLength({ min: 6 })
-    .withMessage("Password must be at least 6 character long"),
+    .isLength({ min: 5 })
+    .withMessage("Password must be at least 5 character long"),
 ];
 
 exports.isRequestValidated = (req, res, next) => {
